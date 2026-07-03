@@ -1,0 +1,35 @@
+======================================================================
+QUESTION 1: ENVIRONMENT REPORT
+======================================================================
+
+1. Username and Groups:
+   whoami: cannot find name for user ID 1001
+   1002
+   groups: unknown ID 1002
+   Observations: The 'whoami' command identifies the current active user profile logged into the terminal. Running 'groups' lists all security groups the current user belongs to, verifying administrative or standard privileges within the environment.
+
+2. Current Shell:
+   /bin/sh
+   Observations: The 'echo $SHELL' command evaluates the environmental variable to show the default command-line interpreter. This confirms whether the session is running in Bash, Zsh, or another specific shell environment.
+
+3. Current Working Directory:
+   /tmp/user/home
+   Observations: The 'pwd' (print working directory) command reveals the absolute path of the directory the user is currently operating in. This ensures files created subsequently are tracked to the correct workspace location.
+
+4. Workspace List:
+   total 0
+   drwx------ 4 1001 1001 80 Jun 23 16:25 .
+   drwx------ 3 1001 1001 60 Jun 23 16:25 ..
+   drwx------ 2 1001 1001 40 Jun 23 16:25 .cache
+   drwx------ 2 1001 1001 40 Jun 23 16:25 .tmp
+   Observations: Using 'ls -la' provides a comprehensive detailed list of all items in the workspace, including hidden configuration files (prefixed with a dot). It displays file sizes, ownerships, and access permissions.
+
+5. Network Connectivity:
+   PING 8.8.8.8 (8.8.8.8): 56 data bytes
+   64 bytes from 8.8.8.8: seq=0 ttl=42 time=0.798 ms
+   64 bytes from 8.8.8.8: seq=1 ttl=42 time=0.789 ms
+   64 bytes from 8.8.8.8: seq=2 ttl=42 time=0.665 ms
+   --- 8.8.8.8 ping statistics ---
+   3 packets transmitted, 3 packets received, 0% packet loss
+   round-trip min/avg/max = 0.665/0.750/0.798 ms
+   Observations: The 'ping -c 3 8.8.8.8' command sends three ICMP echo requests to a public DNS server to test network transit. The successful transmission and 0% packet loss confirm that the Linux instance has active outbound internet routing.

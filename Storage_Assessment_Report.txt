@@ -1,0 +1,17 @@
+======================================================================
+QUESTION 5: STORAGE ASSESSMENT REPORT
+======================================================================
+
+1. Storage Diagnostics Overview:
+   user$ df -h
+   df: no file systems processed
+   user$ df -i
+   df: no file systems processed
+
+2. Storage Health Observations:
+   Observations: The 'lsblk' utility is not found in this environment. Running the 'df -h' and 'df -i' utilities returns 'no file systems processed'. This indicates that the active terminal is operating inside a highly restricted container sandbox or a chroot jail where virtual storage points and raw device blocks are hidden from non-root runtime environments.
+
+3. Recommendations for Improving Storage Utilization:
+   - Systematically purge orphan dependencies and clear outdated package archives regularly via built-in application managers.
+   - Configure rotation schedules for dynamic logging directories to compress historical records automatically.
+   - Routinely monitor inode consumption to identify application patterns generating redundant system references.

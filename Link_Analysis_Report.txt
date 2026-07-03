@@ -1,0 +1,19 @@
+======================================================================
+QUESTION 3: LINK ANALYSIS REPORT
+======================================================================
+
+1. Inode Numbers of All Files (Initial State):
+   90824 -rw-r--r-- 2 1001 1001 20 Jun 23 16:48 hard_link.txt
+   90824 -rw-r--r-- 2 1001 1001 20 Jun 23 16:48 original.txt
+   90825 lrwxrwxrwx 1 1001 1001 12 Jun 23 16:48 sym_link.txt -> original.txt
+   Observations: The hard link shares the exact same inode number (90824) as 'original.txt', pointing directly to the underlying data block. The symbolic link has a unique inode number (90825) because it acts merely as a shortcut path string pointing to the filename.
+
+2. Impact of Deleting the Original File:
+   user$ cat hard_link.txt
+   Target data content
+   user$ cat sym_link.txt
+   cat: sym_link.txt: No such file or directory
+   Observations: Attempting to read 'sym_link.txt' results in a 'No such file or directory' error because its text target path was destroyed, creating a broken link. However, reading 'hard_link.txt' successfully retrieves the data.
+
+3. Conclusions Drawn from Experiment:
+   Observations: Hard links share disk storage space and remain functional as long as at least one link point exists because the data's reference count dropped from 2 to 1 instead of 0. Symbolic links depend entirely on the literal presence of the target file's path string name to work properly.

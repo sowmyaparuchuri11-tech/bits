@@ -1,0 +1,20 @@
+======================================================================
+QUESTION 4: I/O INVESTIGATION REPORT
+======================================================================
+
+1. Open Files and File Descriptors:
+   27308 /bin/busybox    0    pipe:[654352]
+   27308 /bin/busybox    1    pipe:[654353]
+   27308 /bin/busybox    2    pipe:[654354]
+   27311 /usr/bin/coreutils 0 pipe:[652184]
+   27311 /usr/bin/coreutils 1 pipe:[654353]
+   27311 /usr/bin/coreutils 2 pipe:[654354]
+   Observations: The 'lsof' tool lists open files across active system processes. The output explicitly tracks numeric file descriptors (0 for standard input, 1 for standard output, 2 for standard error), which trace how active application binaries interface with stream pathways and system communication pipes.
+
+2. Resource Limits Observed:
+   25000
+   Observations: The 'ulimit -n' command displays the maximum threshold of simultaneous open file descriptors (25000) a process can hold in this active session environment, preventing system resource exhaustion or rogue application starvation.
+
+3. Redirection and Error Handling Results:
+   cat: non_existent_file.txt: No such file or directory
+   Observations: Standard output redirection uses '>', while error streams are directed explicitly via '2>'. When 'non_existent_file.txt' was queried, the text error message bypassed the normal data output stream completely and was isolated cleanly inside 'error_log.txt'. Linux handles standard data execution streams and system diagnostic alerts as separate communication channels.
