@@ -1,0 +1,15 @@
+======================================================================
+QUESTION 2: SECURE PROJECT WORKSPACE REPORT
+======================================================================
+
+1. Umask Value Used:
+   0022
+   Observations: The umask value determines the default permissions assigned to newly created files and folders. A default mask like 0022 automatically strips write permissions from groups and others during directory creation.
+
+2. Directory Structure & Initial State:
+   drwxr-xr-x 3 1000 developers 60 Jun 23 16:41 secure_workspace
+   Observations: Created 'secure_workspace/project_data' using the nested mkdir flag. The initial permissions inherited from the system umask allow global visibility (read and execute permissions for everyone), which violates our secure workspace requirements.
+
+3. Permission Modification & Ownership Details:
+   drwxr-x--- 3 1001 1001 60 Jun 23 16:41 secure_workspace
+   Observations: Executed 'chmod 750' on the workspace. This explicitly restricts access so that the file owner retains full read, write, and execute privileges (rwx), the assigned group has read and browse capabilities (r-x), and unauthenticated outside users are completely blocked (---), successfully protecting sensitive project data from unauthorized local extraction.
